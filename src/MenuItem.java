@@ -1,4 +1,4 @@
-public class MenuItem {
+public class MenuItem implements Orderable {
     // 1. Private variables (This is Encapsulation)
     private String name;
     private double price;
