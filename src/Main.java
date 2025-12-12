@@ -33,5 +33,15 @@ public class Main {
 
         // 6. Print Receipt
         currentOrder.printOrderSummary();
+        // --- POLYMORPHISM DEMO ---
+        System.out.println("\n--- Payment Process ---");
+
+        // 1. Pay by Cash
+        Payment cash = new CashPayment(15.50, 20.00);
+        cash.processPayment();
+
+        // 2. Pay by Card
+        Payment card = new CreditCardPayment(50.00, "1234567812345678");
+        card.processPayment();
     }
 }
