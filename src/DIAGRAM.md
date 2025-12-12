@@ -1,6 +1,6 @@
 # Project UML Diagrams
 
-## Class Diagram
+## 1. Class Diagram
 ```mermaid
 classDiagram
     User <|-- Customer : extends
@@ -18,7 +18,11 @@ classDiagram
     class Customer {
         +Cart myCart
     }
-    useCaseDiagram
+```
+
+## 2. Use Case Diagram
+```mermaid
+useCaseDiagram
     actor Customer
     usecase "View Menu" as UC1
     usecase "Add Items to Cart" as UC2
@@ -29,3 +33,4 @@ classDiagram
     Customer --> UC2
     Customer --> UC3
     Customer --> UC4
+```
