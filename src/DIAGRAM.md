@@ -1,4 +1,3 @@
-
 # Project UML Diagrams
 
 ## 1. Class Diagram
