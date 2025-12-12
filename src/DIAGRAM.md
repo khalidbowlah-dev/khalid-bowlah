@@ -1,9 +1,10 @@
+```mermaid
 classDiagram
-User <|-- Customer : extends
-Orderable <|.. MenuItem : implements
-Payment <|-- CashPayment : extends
-Payment <|-- CreditCardPayment : extends
-
+    User <|-- Customer : extends
+    Orderable <|.. MenuItem : implements
+    Payment <|-- CashPayment : extends
+    Payment <|-- CreditCardPayment : extends
+    
     class Payment {
         +processPayment()
     }
@@ -13,7 +14,9 @@ Payment <|-- CreditCardPayment : extends
     }
     class Customer {
         +Cart myCart
-    }useCaseDiagram
+    }
+
+useCaseDiagram
     actor Customer
     package "Food Ordering System" {
         usecase "View Menu" as UC1
@@ -25,3 +28,4 @@ Payment <|-- CreditCardPayment : extends
     Customer --> UC2
     Customer --> UC3
     Customer --> UC4
+```
