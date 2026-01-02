@@ -1,6 +1,8 @@
+package com.foodordering;
+
 public class Main {
     public static void main(String[] args) {
-        // 1. Setup the Restaurant
+        // 1. Setup the com.foodordering.Restaurant
         Restaurant foodSpot = new Restaurant();
         MenuItem burger = new MenuItem("Cheese Burger", 12.50);
         MenuItem pizza = new MenuItem("Pepperoni Pizza", 15.00);
@@ -10,20 +12,20 @@ public class Main {
         foodSpot.addMenuItem(pizza);
         foodSpot.addMenuItem(cola);
 
-        // 2. A Customer walks in
-        System.out.println("--- Customer Enters ---");
+        // 2. A com.foodordering.Customer walks in
+        System.out.println("--- com.foodordering.Customer Enters ---");
         Customer khalid = new Customer("Khalid Bowlah", "ID-001");
         System.out.println("Welcome, " + khalid.getName() + "!");
 
-        // 3. Customer views menu
+        // 3. com.foodordering.Customer views menu
         foodSpot.displayMenu();
 
-        // 4. Customer picks food
+        // 4. com.foodordering.Customer picks food
         System.out.println("\n--- Adding items to cart ---");
         khalid.addToCart(burger);
         khalid.addToCart(cola);
 
-        // 5. Create the Order
+        // 5. Create the com.foodordering.Order
         System.out.println("\n--- Checkout ---");
         Order currentOrder = new Order();
         // Move items from cart to order
@@ -34,7 +36,7 @@ public class Main {
         // 6. Print Receipt
         currentOrder.printOrderSummary();
         // --- POLYMORPHISM DEMO ---
-        System.out.println("\n--- Payment Process ---");
+        System.out.println("\n--- com.foodordering.Payment Process ---");
 
         // 1. Pay by Cash
         Payment cash = new CashPayment(15.50, 20.00);

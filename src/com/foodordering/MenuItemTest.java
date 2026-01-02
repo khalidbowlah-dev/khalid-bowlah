@@ -1,5 +1,7 @@
+package com.foodordering;
+
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.*;
 
 class MenuItemTest {
 
@@ -9,6 +11,6 @@ class MenuItemTest {
         MenuItem burger = new MenuItem("Burger", 9.99);
 
         // 2. Check if the price is actually 9.99
-        assertEquals(9.99, burger.getPrice(), 0.001);
+        Assertions.assertEquals(9.99, burger.getPrice(), 0.001);
     }
 }

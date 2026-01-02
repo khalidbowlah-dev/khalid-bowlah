@@ -1,3 +1,5 @@
+package com.foodordering;
+
 public class CashPayment extends Payment {
     private double cashTendered;
 
@@ -8,7 +10,7 @@ public class CashPayment extends Payment {
 
     @Override
     public void processPayment() {
-        System.out.println("Payment Type: CASH");
+        System.out.println("com.foodordering.Payment Type: CASH");
         if (cashTendered >= amount) {
             System.out.println("Total: $" + amount);
             System.out.println("Change: $" + (cashTendered - amount));

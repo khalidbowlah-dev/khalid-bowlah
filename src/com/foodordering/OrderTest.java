@@ -1,3 +1,6 @@
+package com.foodordering;
+
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -15,12 +18,12 @@ class OrderTest {
         order.addItem(soda);
 
         // 3. Assertion
-        assertEquals(12.5, order.getTotalPrice(), "Total should be sum of item prices");
+        Assertions.assertEquals(12.5, order.getTotalPrice(), "Total should be sum of item prices");
     }
 
     @Test
     void testEmptyOrderTotal() {
         Order order = new Order();
-        assertEquals(0.0, order.getTotalPrice(), "Empty order should be 0.0");
+        Assertions.assertEquals(0.0, order.getTotalPrice(), "Empty order should be 0.0");
     }
 }

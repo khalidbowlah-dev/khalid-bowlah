@@ -1,5 +1,7 @@
+package com.foodordering;
+
 public class User {
-    // Protected means "Children" (like Customer) can use these
+    // Protected means "Children" (like com.foodordering.Customer) can use these
     protected String name;
     protected String id;
 

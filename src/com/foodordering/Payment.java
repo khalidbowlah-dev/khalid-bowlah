@@ -1,3 +1,5 @@
+package com.foodordering;
+
 public abstract class Payment {
     protected double amount;
 

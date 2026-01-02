@@ -1,3 +1,5 @@
+package com.foodordering;
+
 public class MenuItem implements Orderable {
     // 1. Private variables (This is Encapsulation)
     private String name;
