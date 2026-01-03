@@ -7,11 +7,6 @@ public class Main {
         MenuItem burger = new MenuItem("Cheese Burger", 12.50);
         MenuItem pizza = new MenuItem("Pepperoni Pizza", 15.00);
         MenuItem cola = new MenuItem("Ice Cold Cola", 2.99);
-
-        foodSpot.addMenuItem(burger);
-        foodSpot.addMenuItem(pizza);
-        foodSpot.addMenuItem(cola);
-
         // 2. A com.foodordering.Customer walks in
         System.out.println("--- com.foodordering.Customer Enters ---");
         Customer khalid = new Customer("Khalid Bowlah", "ID-001");
