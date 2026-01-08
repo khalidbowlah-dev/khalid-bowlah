@@ -1,44 +1,91 @@
 package com.foodordering;
 
+import java.util.Scanner;
+import java.util.List;
+
 public class Main {
     public static void main(String[] args) {
-        // 1. Setup the com.foodordering.Restaurant
+        // 1. Initialize Scanner to read your keyboard input
+        Scanner scanner = new Scanner(System.in);
+
+        // 2. Setup Restaurant and Load Menu from CSV
         Restaurant foodSpot = new Restaurant();
-        MenuItem burger = new MenuItem("Cheese Burger", 12.50);
-        MenuItem pizza = new MenuItem("Pepperoni Pizza", 15.00);
-        MenuItem cola = new MenuItem("Ice Cold Cola", 2.99);
-        // 2. A com.foodordering.Customer walks in
-        System.out.println("--- com.foodordering.Customer Enters ---");
-        Customer khalid = new Customer("Khalid Bowlah", "ID-001");
-        System.out.println("Welcome, " + khalid.getName() + "!");
 
-        // 3. com.foodordering.Customer views menu
-        foodSpot.displayMenu();
+        System.out.println("******************************************");
+        System.out.println("   WELCOME TO THE FOOD ORDERING SYSTEM    ");
+        System.out.println("******************************************");
 
-        // 4. com.foodordering.Customer picks food
-        System.out.println("\n--- Adding items to cart ---");
-        khalid.addToCart(burger);
-        khalid.addToCart(cola);
+        // --- INTERACTION 1: ASKING FOR NAME ---
+        System.out.print("\n> Please enter your name: ");
+        String name = scanner.nextLine(); // This waits for you to type your name
 
-        // 5. Create the com.foodordering.Order
-        System.out.println("\n--- Checkout ---");
-        Order currentOrder = new Order();
-        // Move items from cart to order
-        for (MenuItem item : khalid.getCart()) {
-            currentOrder.addItem(item);
+        // Create the customer dynamically
+        Customer customer = new Customer(name, "ID-001");
+        System.out.println("Welcome, " + customer.getName() + "!");
+
+        // --- INTERACTION 2: ASKING WHAT YOU WANT ---
+        boolean ordering = true;
+        List<MenuItem> menu = foodSpot.getMenu();
+
+        // Check if menu is empty first (Safety check)
+        if (menu.isEmpty()) {
+            System.out.println("Error: The menu is empty! Check your menu.csv file.");
+            ordering = false;
         }
 
-        // 6. Print Receipt
-        currentOrder.printOrderSummary();
-        // --- POLYMORPHISM DEMO ---
-        System.out.println("\n--- com.foodordering.Payment Process ---");
+        while (ordering) {
+            System.out.println("\n--- MENU ---");
+            // Display items with numbers (1, 2, 3...)
+            for (int i = 0; i < menu.size(); i++) {
+                System.out.println((i + 1) + ". " + menu.get(i).toString());
+            }
+            System.out.println("0. Finish Ordering");
 
-        // 1. Pay by Cash
-        Payment cash = new CashPayment(15.50, 20.00);
-        cash.processPayment();
+            System.out.print("\n> Select an item number to add to cart: ");
+            int choice = scanner.nextInt(); // This waits for you to type a number
 
-        // 2. Pay by Card
-        Payment card = new CreditCardPayment(50.00, "1234567812345678");
-        card.processPayment();
+            if (choice == 0) {
+                ordering = false;
+            } else if (choice > 0 && choice <= menu.size()) {
+                MenuItem selectedItem = menu.get(choice - 1);
+                customer.addToCart(selectedItem);
+                System.out.println("   (Added " + selectedItem.getName() + " to your cart)");
+            } else {
+                System.out.println("   Invalid selection. Try again.");
+            }
+        }
+
+        // --- CHECKOUT ---
+        if (!customer.getCart().isEmpty()) {
+            System.out.println("\n--- CHECKOUT ---");
+            Order currentOrder = new Order();
+            for (MenuItem item : customer.getCart()) {
+                currentOrder.addItem(item);
+            }
+            currentOrder.printOrderSummary();
+
+            // Interaction 3: Payment
+            System.out.println("\nSelect Payment Method:");
+            System.out.println("1. Cash");
+            System.out.println("2. Credit Card");
+            System.out.print("> Your Choice: ");
+            int paymentChoice = scanner.nextInt();
+
+            double total = currentOrder.getTotalPrice();
+
+            if (paymentChoice == 1) {
+                System.out.print("Enter cash amount: ");
+                double cash = scanner.nextDouble();
+                new CashPayment(total, cash).processPayment();
+            } else if (paymentChoice == 2) {
+                System.out.print("Enter Card Number: ");
+                String card = scanner.next();
+                new CreditCardPayment(total, card).processPayment();
+            }
+        } else {
+            System.out.println("You didn't order anything.");
+        }
+
+        scanner.close();
     }
 }
